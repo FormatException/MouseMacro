@@ -24,3 +24,7 @@ x86/
 
 # Runtime settings written by the app
 MouseMacro/appsettings.json
+
+# Release build artifacts
+publish/
+*.zip
