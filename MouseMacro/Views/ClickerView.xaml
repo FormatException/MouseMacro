@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="MouseMacro.Views.ClickerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel>
+        <GroupBox Header="Clicker settings" Padding="8" Margin="0,0,0,8">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Clicks per second:" VerticalAlignment="Center" Margin="0,0,8,0" Style="{StaticResource BaseTextStyle}"/>
+                    <TextBox Text="{Binding ClicksPerSecond, UpdateSourceTrigger=PropertyChanged}" Width="100" HorizontalContentAlignment="Right"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Mouse button:" VerticalAlignment="Center" Margin="0,0,8,0" Style="{StaticResource BaseTextStyle}"/>
+                    <ComboBox ItemsSource="{Binding MouseButtons}" SelectedItem="{Binding SelectedButton}" Width="100"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="Control" Padding="8">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="Start" Command="{Binding StartCommand}" Style="{StaticResource AccentButtonStyle}" MinWidth="100" Margin="0,0,8,0"/>
+                    <Button Content="Stop" Command="{Binding StopCommand}" Style="{StaticResource DangerButtonStyle}" MinWidth="80"/>
+                </StackPanel>
+                <TextBlock Style="{StaticResource BaseTextStyle}">
+                    <Run Text="Status: "/><Run Text="{Binding StatusText}" FontWeight="SemiBold"/>
+                    <Run Text="   Clicks performed: "/><Run Text="{Binding ClicksPerformed}" FontWeight="SemiBold"/>
+                </TextBlock>
+            </StackPanel>
+        </GroupBox>
+    </StackPanel>
+</UserControl>

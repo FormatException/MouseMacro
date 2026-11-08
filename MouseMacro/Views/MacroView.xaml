@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="MouseMacro.Views.MacroView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibility"/>
+        <Style x:Key="HiddenWhilePlayingStyle" TargetType="GroupBox" BasedOn="{StaticResource {x:Type GroupBox}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsPlaying}" Value="True">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Recording" Padding="8" Margin="0,0,0,8" Style="{StaticResource HiddenWhilePlayingStyle}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox Content="Record mouse movements" IsChecked="{Binding RecordMouseMovements}" Margin="0,0,16,0"/>
+                    <CheckBox Content="Compress mouse movements" IsChecked="{Binding CompressMouseMovements}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Button Content="Record" Command="{Binding StartRecordingCommand}" Style="{StaticResource AccentButtonStyle}" MinWidth="100" Margin="0,0,8,0"/>
+                    <Button Content="Stop" Command="{Binding StopRecordingCommand}" Style="{StaticResource DangerButtonStyle}" MinWidth="80" Margin="0,0,8,0"/>
+                    <Button Content="Clear" Command="{Binding ClearCommand}" MinWidth="80"/>
+                </StackPanel>
+                <TextBlock Margin="0,10,0,0" Style="{StaticResource BaseTextStyle}">
+                    <Run Text="Events recorded: "/><Run Text="{Binding EventCount}" FontWeight="SemiBold"/>
+                    <Run Text="   Duration: "/><Run Text="{Binding DurationText}" FontWeight="SemiBold"/>
+                </TextBlock>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Header="Playback" Padding="8" Margin="0,0,0,8">
+            <StackPanel>
+                <CheckBox Content="Loop playback" IsChecked="{Binding LoopPlayback}"/>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="Speed (%):" VerticalAlignment="Center" Margin="0,0,8,0" Style="{StaticResource BaseTextStyle}"/>
+                    <TextBox Text="{Binding PlaybackSpeedPercent, UpdateSourceTrigger=PropertyChanged}" Width="60" HorizontalContentAlignment="Right"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <Button Content="Play" Command="{Binding StartPlaybackCommand}" Style="{StaticResource AccentButtonStyle}" MinWidth="100" Margin="0,0,8,0"/>
+                    <Button Content="Stop" Command="{Binding StopPlaybackCommand}" Style="{StaticResource DangerButtonStyle}" MinWidth="80"/>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="2" Header="File" Padding="8" Margin="0,0,0,8" Style="{StaticResource HiddenWhilePlayingStyle}">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Save to file..." Command="{Binding SaveToFileCommand}" MinWidth="120" Margin="0,0,8,0"/>
+                <Button Content="Load from file..." Command="{Binding LoadFromFileCommand}" MinWidth="120"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="3" Header="Macro text (editable)" Padding="8">
+            <TextBox x:Name="MacroTextBox"
+                     Text="{Binding MacroText, UpdateSourceTrigger=PropertyChanged}"
+                     AcceptsReturn="True" AcceptsTab="True"
+                     VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"
+                     FontFamily="Consolas" FontSize="12"/>
+        </GroupBox>
+    </Grid>
+</UserControl>

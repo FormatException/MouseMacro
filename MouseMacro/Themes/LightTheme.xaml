@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="BackColor">#FFF3F3F3</Color>
+    <Color x:Key="PanelColor">#FFFFFFFF</Color>
+    <Color x:Key="InputColor">#FFFBFBFB</Color>
+    <Color x:Key="BorderColor">#FFD0D0D0</Color>
+    <Color x:Key="TextColor">#FF1B1B1B</Color>
+    <Color x:Key="MutedTextColor">#FF6B6B6B</Color>
+    <Color x:Key="AccentColor">#FF0078D4</Color>
+    <Color x:Key="AccentHoverColor">#FF2B88D8</Color>
+    <Color x:Key="AccentPressedColor">#FF005A9E</Color>
+    <Color x:Key="DangerColor">#FFD13438</Color>
+    <Color x:Key="DangerHoverColor">#FFE14649</Color>
+    <Color x:Key="DangerPressedColor">#FFA4262C</Color>
+    <Color x:Key="ButtonHoverColor">#FFE8F2FB</Color>
+    <Color x:Key="InputHoverBorderColor">#FF9D9D9D</Color>
+
+    <SolidColorBrush x:Key="BackBrush" Color="{StaticResource BackColor}"/>
+    <SolidColorBrush x:Key="PanelBrush" Color="{StaticResource PanelColor}"/>
+    <SolidColorBrush x:Key="InputBrush" Color="{StaticResource InputColor}"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}"/>
+    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}"/>
+    <SolidColorBrush x:Key="MutedTextBrush" Color="{StaticResource MutedTextColor}"/>
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}"/>
+    <SolidColorBrush x:Key="AccentPressedBrush" Color="{StaticResource AccentPressedColor}"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource DangerColor}"/>
+    <SolidColorBrush x:Key="DangerHoverBrush" Color="{StaticResource DangerHoverColor}"/>
+    <SolidColorBrush x:Key="DangerPressedBrush" Color="{StaticResource DangerPressedColor}"/>
+    <SolidColorBrush x:Key="ButtonHoverBrush" Color="{StaticResource ButtonHoverColor}"/>
+    <SolidColorBrush x:Key="InputHoverBorderBrush" Color="{StaticResource InputHoverBorderColor}"/>
+</ResourceDictionary>
