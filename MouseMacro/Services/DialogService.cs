@@ -2,7 +2,7 @@ using Microsoft.Win32;
 
 namespace MouseMacro.Services;
 
-public sealed class DialogService
+public sealed class DialogService : IDialogService
 {
     public string? ShowSaveFileDialog(string filter, string fileName)
     {

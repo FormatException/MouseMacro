@@ -10,9 +10,9 @@ public sealed class SettingsService
     private static readonly JsonSerializerOptions SerializerOptions = new() { WriteIndented = true };
     private readonly string _filePath;
 
-    public SettingsService()
+    public SettingsService(string? filePath = null)
     {
-        _filePath = Path.Combine(AppContext.BaseDirectory, "appsettings.json");
+        _filePath = filePath ?? Path.Combine(AppContext.BaseDirectory, "appsettings.json");
     }
 
     public string FilePath => _filePath;

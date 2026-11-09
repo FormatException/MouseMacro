@@ -17,9 +17,9 @@ public partial class MacroViewModel : ObservableObject
 
     private readonly AppSettings _settings;
     private readonly SettingsService _settingsService;
-    private readonly MouseHookService _mouseHook;
-    private readonly MouseInputService _mouseInput;
-    private readonly DialogService _dialogService;
+    private readonly IMouseHookService _mouseHook;
+    private readonly IMouseInputService _mouseInput;
+    private readonly IDialogService _dialogService;
     private readonly Func<Rect> _getMainWindowBounds;
     private readonly List<RecordedMouseEvent> _events = new();
 
@@ -71,9 +71,9 @@ public partial class MacroViewModel : ObservableObject
     public MacroViewModel(
         AppSettings settings,
         SettingsService settingsService,
-        MouseHookService mouseHook,
-        MouseInputService mouseInput,
-        DialogService dialogService,
+        IMouseHookService mouseHook,
+        IMouseInputService mouseInput,
+        IDialogService dialogService,
         Func<Rect> getMainWindowBounds)
     {
         _settings = settings;
@@ -371,7 +371,7 @@ public partial class MacroViewModel : ObservableObject
         ApplyCompression();
     }
 
-    private void ApplyCompression()
+    internal void ApplyCompression()
     {
         if (!CompressMouseMovements || _events.Count == 0)
         {
@@ -441,7 +441,7 @@ public partial class MacroViewModel : ObservableObject
         return builder.ToString();
     }
 
-    private static List<RecordedMouseEvent> ParseEvents(string text)
+    internal static List<RecordedMouseEvent> ParseEvents(string text)
     {
         var loaded = new List<RecordedMouseEvent>();
         foreach (var rawLine in text.Split('\n'))
@@ -476,19 +476,19 @@ public partial class MacroViewModel : ObservableObject
         SaveToFileCommand.NotifyCanExecuteChanged();
     }
 
-    private static MouseEventType ToDownType(MouseButtonKind button) => button switch
+    internal static MouseEventType ToDownType(MouseButtonKind button) => button switch
     {
         MouseButtonKind.Right => MouseEventType.RightDown,
         MouseButtonKind.Middle => MouseEventType.MiddleDown,
         _ => MouseEventType.LeftDown
     };
 
-    private static MouseEventType ToUpType(MouseButtonKind button) => button switch
+    internal static MouseEventType ToUpType(MouseButtonKind button) => button switch
     {
         MouseButtonKind.Right => MouseEventType.RightUp,
         MouseButtonKind.Middle => MouseEventType.MiddleUp,
         _ => MouseEventType.LeftUp
     };
 
-    private static string FormatDuration(long ms) => $"{ms / 1000.0:0.0}s";
+    internal static string FormatDuration(long ms) => $"{ms / 1000.0:0.0}s";
 }

@@ -7,7 +7,7 @@ namespace MouseMacro.Services;
 /// Global low-level mouse hook used to record mouse activity even when the app is not focused.
 /// Must be started on a thread with a message loop (the WPF UI thread).
 /// </summary>
-public sealed class MouseHookService : IDisposable
+public sealed class MouseHookService : IMouseHookService
 {
     private const int WH_MOUSE_LL = 14;
     private const int WM_MOUSEMOVE = 0x0200;

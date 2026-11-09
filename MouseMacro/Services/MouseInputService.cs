@@ -6,7 +6,7 @@ namespace MouseMacro.Services;
 /// <summary>
 /// Sends synthetic mouse input (movement, button presses, wheel) via SendInput.
 /// </summary>
-public sealed class MouseInputService
+public sealed class MouseInputService : IMouseInputService
 {
     private const uint INPUT_MOUSE = 0;
     private const uint MOUSEEVENTF_MOVE = 0x0001;

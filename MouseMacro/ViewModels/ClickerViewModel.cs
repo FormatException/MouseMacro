@@ -12,7 +12,7 @@ public partial class ClickerViewModel : ObservableObject
 {
     private readonly AppSettings _settings;
     private readonly SettingsService _settingsService;
-    private readonly MouseInputService _mouseInput;
+    private readonly IMouseInputService _mouseInput;
     private CancellationTokenSource? _clickerCts;
 
     [ObservableProperty]
@@ -34,7 +34,7 @@ public partial class ClickerViewModel : ObservableObject
 
     public IReadOnlyList<string> MouseButtons { get; } = new[] { "Left", "Right", "Middle" };
 
-    public ClickerViewModel(AppSettings settings, SettingsService settingsService, MouseInputService mouseInput)
+    public ClickerViewModel(AppSettings settings, SettingsService settingsService, IMouseInputService mouseInput)
     {
         _settings = settings;
         _settingsService = settingsService;
