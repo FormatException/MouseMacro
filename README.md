@@ -26,6 +26,14 @@ dotnet run --project MouseMacro
 
 Or open `MouseMacro.slnx` in Visual Studio / VS Code and press F5.
 
+## Tests
+
+```powershell
+dotnet test MouseMacro.slnx
+```
+
+The `MouseMacro.Tests` project (xUnit) covers settings persistence, macro parsing/compression, clicker behavior, and hotkey routing. Mouse input, hooks, and file dialogs are mocked via interfaces, so tests never move the real cursor or open windows.
+
 ## License
 
 [MIT](LICENSE)
