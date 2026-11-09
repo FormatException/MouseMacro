@@ -95,20 +95,27 @@ public partial class MainViewModel : ObservableObject
 
     public void HandleStartStopHotkey()
     {
+        // Always stop whatever is currently running, regardless of the selected view,
+        // so switching views mid-operation doesn't stop the wrong thing.
+        if (MacroViewModel.StopPlaybackCommand.CanExecute(null))
+        {
+            MacroViewModel.StopPlaybackCommand.Execute(null);
+            return;
+        }
+
+        if (ClickerViewModel.StopCommand.CanExecute(null))
+        {
+            ClickerViewModel.StopCommand.Execute(null);
+            return;
+        }
+
+        // Nothing running: start based on the selected view.
         if (IsMacroSelected)
         {
-            if (MacroViewModel.StopPlaybackCommand.CanExecute(null))
-            {
-                MacroViewModel.StopPlaybackCommand.Execute(null);
-            }
-            else if (MacroViewModel.StartPlaybackCommand.CanExecute(null))
+            if (MacroViewModel.StartPlaybackCommand.CanExecute(null))
             {
                 MacroViewModel.StartPlaybackCommand.Execute(null);
             }
-        }
-        else if (ClickerViewModel.StopCommand.CanExecute(null))
-        {
-            ClickerViewModel.StopCommand.Execute(null);
         }
         else if (ClickerViewModel.StartCommand.CanExecute(null))
         {
@@ -118,16 +125,14 @@ public partial class MainViewModel : ObservableObject
 
     public void HandleRecordToggleHotkey()
     {
-        if (!IsMacroSelected)
-        {
-            return;
-        }
-
+        // Stop an in-progress recording even if the user switched views.
         if (MacroViewModel.StopRecordingCommand.CanExecute(null))
         {
             MacroViewModel.StopRecordingCommand.Execute(null);
+            return;
         }
-        else if (MacroViewModel.StartRecordingCommand.CanExecute(null))
+
+        if (IsMacroSelected && MacroViewModel.StartRecordingCommand.CanExecute(null))
         {
             MacroViewModel.StartRecordingCommand.Execute(null);
         }
